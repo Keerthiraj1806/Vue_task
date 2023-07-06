@@ -24,6 +24,7 @@ const employees = ref([{ Name:'Praveen',Age:25,Company: 'Wipro'}, { Name:'Kavin'
         border: 2px;
         border-color: black;
         border-style: solid;
+        border-collapse: collapse;
         text-align: center;
     }
 </style>

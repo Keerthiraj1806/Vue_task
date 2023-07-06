@@ -26,6 +26,10 @@ const router = createRouter({
       path:'/tab',
       name:'tab',
       component: ()=> import('../views/Tab.vue')
+    },{
+      path:'/age',
+      name:'age',
+      component: ()=> import('../views/AgeView.vue')
     }
   ]
 })

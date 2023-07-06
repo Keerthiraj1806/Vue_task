@@ -30,5 +30,6 @@ data(){
     .table{
         border: 2px black dotted;
         text-align: center;
+        border-collapse: collapse;
     }
 </style>
