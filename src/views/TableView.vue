@@ -1,7 +1,7 @@
 <script setup lang="ts">
 //composition
 import { ref } from 'vue';
-const items = ref([{ Name:'Praveen',Age:25,Company: 'Wipro'}, { Name:'Kavin',Age:24,Company: 'Afcon'},{ Name:'vino',Age:26,Company: 'Kgr'}])
+const employees = ref([{ Name:'Praveen',Age:25,Company: 'Wipro'}, { Name:'Kavin',Age:24,Company: 'Afcon'},{ Name:'vino',Age:26,Company: 'Kgr'}])
 </script>
 
 <template>
@@ -11,10 +11,10 @@ const items = ref([{ Name:'Praveen',Age:25,Company: 'Wipro'}, { Name:'Kavin',Age
             <th class="table">Age</th>
             <th class="table">Company</th>
         </tr>
-        <tr v-for="item in items">
-            <td class="table">{{ item.Name }}</td>
-            <td class="table">{{ item.Age }}</td>
-            <td class="table">{{ item.Company }}</td>
+        <tr v-for="person in employees">
+            <td class="table">{{ person.Name }}</td>
+            <td class="table">{{ person.Age }}</td>
+            <td class="table">{{ person.Company }}</td>
         </tr>
     </table>
 </template>
