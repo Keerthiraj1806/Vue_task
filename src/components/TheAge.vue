@@ -9,6 +9,7 @@ export default{
     methods:{
         calculate_age() { 
                 if(this.dob){
+                    console.log(`Methods...`)
                     var present = new Date(this.today)
                     var birthday =new Date(this.dob)
                     var age = present.getTime()-birthday.getTime()
@@ -23,6 +24,7 @@ export default{
     computed:{
         Calculate_age() { 
                 if(this.dob){
+                    console.log(`Computed...`)
                     var present = new Date(this.today)
                     var birthday =new Date(this.dob)
                     var age = present.getTime()-birthday.getTime()

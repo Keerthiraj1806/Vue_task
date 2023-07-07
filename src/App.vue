@@ -5,18 +5,17 @@ import HelloWorld from './components/HelloWorld.vue'
 
 <template>
   <header>
-    <div class="main">
-      <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+    <div class="main" style="width:20%">
+      <!--img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" /-->
 
-      <div class="wrapper">
-        <HelloWorld msg="You did it!" />
-
-        <nav>
-          <RouterLink to="/">Home</RouterLink>
-          <RouterLink to="/about">About</RouterLink>
-          <RouterLink to="/table">Table</RouterLink>
-          <RouterLink to="/tab">Tab</RouterLink>
-          <RouterLink to="/age">Age</RouterLink>
+      <div>
+        <!--HelloWorld msg="You did it!" /-->
+        <nav class="sidenav">
+          <RouterLink class= 'route' to="/">Home</RouterLink><br>
+          <RouterLink class= 'route' to="/about">About</RouterLink><br>
+          <RouterLink class= 'route' to="/table">Table</RouterLink><br>
+          <RouterLink class= 'route' to="/age">Age</RouterLink><br>
+          <RouterLink class='route' to="/writable">Writable</RouterLink>
         </nav>
       </div>
     </div>
@@ -26,65 +25,42 @@ import HelloWorld from './components/HelloWorld.vue'
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
+        /* Style for the container */
+        .main {
+            display: flex;
+            height: 100vh;
+        }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
+        /* Style for the sidebar */
+        .sidenav {
+                height: 100%;
+                width: 160px;
+                position: fixed;
+                z-index: 1;
+                top: 0;
+                left: 0;
+                background-color: #111;
+                overflow-x: hidden;
+                padding-top: 20px;
+                font-size: larger;
+        }
 
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
+        /* Style for the sidebar links */
+        .route{
+            font-size: large;
+            display: block;
+            color: #ccc;
+            text-decoration: none;
+            margin: 2px 5px;
+            border: 2px gray solid;
+        }
+        .route:hover {
+            color: #f1f1f1;
+        }
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-}
+        /* Style for the active link in the sidebar */
+        .route.active {
+            color: #fff;
+            font-weight: bold;
+        }
 </style>

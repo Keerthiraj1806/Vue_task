@@ -18,18 +18,17 @@ const router = createRouter({
       component: () => import('../views/AboutView.vue')
     },
     {
-      path: '/table',
-      name: 'table',
-      component: () => import('../views/TableView.vue')
-    },
-    {
-      path:'/tab',
+      path:'/table',
       name:'tab',
-      component: ()=> import('../views/Tab.vue')
+      component: ()=> import('../views/TableView.vue')
     },{
       path:'/age',
       name:'age',
       component: ()=> import('../views/AgeView.vue')
+    },{
+      path:'/writable',
+      name:'writable',
+      component: ()=> import('../views/WritableView.vue')
     }
   ]
 })

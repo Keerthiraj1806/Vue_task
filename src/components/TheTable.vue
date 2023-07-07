@@ -1,16 +1,9 @@
 <script>
-//options
 export default{
-data(){
-    return {
-        employees:[{Name:'Praveen',Age: 25,Company: 'Wipro'},
-            {Name:'Vino',Age:21,Company: 'Afcon'},
-            {Name:'Kavin',Age:28,Company:'TCS'},
-            {Name:'Nirmal',Age:20,Company:'CTS'}]
-    }
-}
+    props:['employees']
 }
 </script>
+
 <template>
     <table class="table">
         <tr>
@@ -28,8 +21,13 @@ data(){
 
 <style scoped>
     .table{
-        border: 2px black dotted;
+        border: 2px black solid;
         text-align: center;
         border-collapse: collapse;
+    }
+    table{
+        align-self: center;
+        height: fit-content;
+        width: 400px;
     }
 </style>
