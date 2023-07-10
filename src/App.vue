@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+
 </script>
 
 <template>
@@ -15,7 +15,7 @@ import HelloWorld from './components/HelloWorld.vue'
           <RouterLink class= 'route' to="/about">About</RouterLink><br>
           <RouterLink class= 'route' to="/table">Table</RouterLink><br>
           <RouterLink class= 'route' to="/age">Age</RouterLink><br>
-          <RouterLink class='route' to="/writable">Writable</RouterLink>
+          <RouterLink class='route' to="/stu">Students_form</RouterLink>
         </nav>
       </div>
     </div>
