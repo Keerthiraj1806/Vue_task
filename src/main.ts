@@ -24,13 +24,9 @@ app.config.globalProperties.$filters={
           else if(mark >=50 && mark <=60){
             return 'B'
           }
-          else if(mark >0 && mark <50){
+          else
             return 'RA'
           }
-          else{
-            return 'Invalid mark'
-          }
     }
-}
 
 app.mount('#app')

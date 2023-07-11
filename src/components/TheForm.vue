@@ -104,10 +104,10 @@ export default {
                 </div>
 
                 <label for="phone">Phone Number:</label>
-                <input type="tel" id="phone" name="phone" pattern="[0-9]+" v-model="PhoneNumber" required><br>
+                <input type="tel" id="phone" name="phone" pattern="[0-9]{10}"  v-model="PhoneNumber" required><br>
 
                 <label for="marks">Marks:</label>
-                <input type="number" id="marks" name="marks" placeholder="0-100" v-model="Marks" required><br>
+                <input type="number" id="marks" name="marks" placeholder="0-100" min="0" max="100" v-model="Marks" required><br>
 
                 <input type="submit" value="Submit">
             </form>

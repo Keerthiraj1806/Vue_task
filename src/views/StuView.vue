@@ -21,7 +21,8 @@ export default{
                   student.Gender=value.Gender,
                   student.Hobbies=value.Hobbies,
                   student.PhoneNumber=value.PhoneNumber,
-                  student.Marks=value.Marks
+                  student.Marks=value.Marks,
+                  this.editIndex=null
                 }
                 else{
                   this.students.push(value)
@@ -71,7 +72,7 @@ export default{
           <td>{{ person.Marks }}</td>
           <td>{{$filters.toGrade(person.Marks)}}</td>
           <td>
-          <button class="edit-button" @click="updateStudent(index)">Edit</button>
+          <button class="edit-button" v-on:click="updateStudent(index)">Edit</button>
           </td>
           <td>
             <button class="delete-button" @click="deleteStudent(person.RollNumber)">Delete</button>
