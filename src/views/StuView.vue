@@ -12,29 +12,53 @@ export default{
     }
     },
     methods:{
-        addstudent(value){
-            if(this.students.length>0){
-              this.students.forEach((student)=>{
-                if(value.RollNumber==student.RollNumber){
-                  student.Name=value.Name,
-                  student.Email=value.Email,
-                  student.Gender=value.Gender,
-                  student.Hobbies=value.Hobbies,
-                  student.PhoneNumber=value.PhoneNumber,
-                  student.Marks=value.Marks,
-                  this.editIndex=null
+        // addstudent(value){
+        //     let push=0
+        //     if(this.students.length>0){
+        //       outerLoop: 
+        //       this.students.forEach((student)=>{
+        //         if(value.RollNumber==student.RollNumber){
+        //           student.Name=value.Name,
+        //           student.Email=value.Email,
+        //           student.Gender=value.Gender,
+        //           student.Hobbies=value.Hobbies,
+        //           student.PhoneNumber=value.PhoneNumber,
+        //           student.Marks=value.Marks,
+        //           this.editIndex=null,
+        //           break outerLoop;
+        //         }
+        //         else{
+        //           push+=1
+        //           if(push==this.students.length){
+        //             this.students.push(value)
+        //           }
+        //         }
+        //       });
+        //     }
+        //     else{
+        //       this.students.push(value)
+        //     }
+        //     },
+        addStudent(value) {
+                let push = true;
+
+                for (const student of this.students) {
+                  if (value.RollNumber === student.RollNumber) {
+                    student.Name = value.Name;
+                    student.Email = value.Email;
+                    student.Gender = value.Gender;
+                    student.Hobbies = value.Hobbies;
+                    student.PhoneNumber = value.PhoneNumber;
+                    student.Marks = value.Marks;
+                    this.editIndex = null;
+                    push = false;
+                    break;
+                  }
                 }
-                else{
-                  this.students.push(value)
-                  
+                if (push) {
+                  this.students.push(value);
                 }
-              });
-               
-            }
-            else{
-              this.students.push(value)
-            }
-            },
+              },
         deleteStudent(a){
           this.students= this.students.filter(std => std.RollNumber!=a)
           },
@@ -47,7 +71,7 @@ export default{
 
 <template>
     <div>
-      <TheForm @show="addstudent" :dataToUpdate="editIndex"></TheForm><br>
+      <TheForm @show="addStudent" :dataToUpdate="editIndex"></TheForm><br>
   
       <table class="student-table">
         <tr>

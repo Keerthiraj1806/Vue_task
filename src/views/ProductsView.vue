@@ -17,12 +17,12 @@ export default{
                     this.products=response.data
                 })
     },
-    updated(){
-        axios.get('http://127.0.0.1:3333/products')
-            .then((response)=>{
-                    this.products=response.data
-                })
-    },
+    // updated(){
+    //     axios.get('http://127.0.0.1:3333/products')
+    //         .then((response)=>{
+    //                 this.products=response.data
+    //             })
+    // },
     methods:{
         addproduct(value){
             console.log(value)
@@ -31,21 +31,20 @@ export default{
                 productName:value.productName,
                 productPrice:value.productPrice
             }
-            console.log(product,'product object')
-            console.log(this.products.length,this.products,value,'value from prop')
+            let push=0
             if(this.products.length>0){
               this.products.forEach((prod)=>{
-                console.log(product.productId,prod.product_id)
                 if(product.productId==prod.product_id){
-                  console.log(product)
                   axios.put('http://127.0.0.1:3333/products/update',product)
                   this.editIndex=null
                 }
                 else{
-                    axios.post('http://127.0.0.1:3333/products',product)
+                    push+=1
+                    if(push==this.products.length){
+                      axios.post('http://127.0.0.1:3333/products',product)
+                    }
                 }
-              })
-               
+              })  
             }
             else{
                 axios.post('http://127.0.0.1:3333/products',product)
@@ -56,7 +55,9 @@ export default{
             console.log(this.editIndex,'button check')
         },
         deleteproduct(index){
-
+          let product={productId:this.products[index].product_id}
+          console.log(product)
+          axios.delete('http://127.0.0.1:3333/products',product)
         }
     }
 }
@@ -85,7 +86,7 @@ export default{
                     <button @click="updateproduct(index)">Update</button>
                 </td>
                 <td>
-                    <button @click="deleteproduct(item.product_id)">Delete</button>
+                    <button @click="deleteproduct(index)">Delete</button>
                 </td>
                 </tr>
             </tbody>

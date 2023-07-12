@@ -23,7 +23,9 @@ export default{
             productPrice:this.productPrice,
             //add a operations key and value
         }
+        console.log(this.product,'emit before check')
         this.$emit('show',this.product)
+        console.log(this.product,'emit after check')
         this.resetForm()
     },
     resetForm() {
@@ -49,7 +51,7 @@ export default{
 }</script>
 <template>
     <div class="form" @submit.prevent="show">
-        <form>
+        <form method="post">
             <div class="form-group">
                 <label for="productId">Product ID:</label>
                 <input type="text" id="productId" name="productId" v-model="productId" required>
