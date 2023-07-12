@@ -12,10 +12,11 @@ export default{
         }
     },
     mounted(){
-        axios.get('http://127.0.0.1:3333/products')
-            .then((response)=>{
-                    this.products=response.data
-                })
+        // axios.get('http://127.0.0.1:3333/products')
+        //     .then((response)=>{
+        //             this.products=response.data
+        //         })
+        this.getProduct()
     },
     // updated(){
     //     axios.get('http://127.0.0.1:3333/products')
@@ -24,6 +25,12 @@ export default{
     //             })
     // },
     methods:{
+      async getProduct(){
+        await axios.get('http://127.0.0.1:3333/products')
+            .then((response)=>{
+                    this.products=response.data
+                })
+      },
         addproduct(value){
             console.log(value)
             var product={
@@ -36,12 +43,14 @@ export default{
               this.products.forEach((prod)=>{
                 if(product.productId==prod.product_id){
                   axios.put('http://127.0.0.1:3333/products/update',product)
+                  alert('Updated successfully')
                   this.editIndex=null
                 }
                 else{
                     push+=1
                     if(push==this.products.length){
                       axios.post('http://127.0.0.1:3333/products',product)
+                      alert('Inserted successfully')
                     }
                 }
               })  
@@ -50,14 +59,25 @@ export default{
                 axios.post('http://127.0.0.1:3333/products',product)
             }
             },
+        confirmUpdate(index){
+          if(confirm('Do you want to update it..')){
+            this.updateproduct(index)
+          }
+        },
         updateproduct(index){
             this.editIndex=this.products[index]
             console.log(this.editIndex,'button check')
+            get()
         },
-        deleteproduct(index){
-          let product={productId:this.products[index].product_id}
-          console.log(product)
-          axios.delete('http://127.0.0.1:3333/products',product)
+        deleteproduct(productId){
+          axios.delete(`http://127.0.0.1:3333/products/${productId}`)
+          alert('Deleted successfully')
+          get()
+        },
+        confirmDelete(productId){
+          if(confirm('Do you want to delete this product?')){
+            this.deleteproduct(productId)
+          }
         }
     }
 }
@@ -78,15 +98,15 @@ export default{
             </thead>
             <tbody>
                 <!-- Loop through the data and create a table row for each item -->
-                <tr v-for="item,index in this.products" :key="index">
+                <tr v-for="(item,index) in this.products" :key="index">
                 <td>{{ item.product_id }}</td>
                 <td>{{ item.product_name }}</td>
                 <td>{{ item.product_price }}</td>
                 <td>
-                    <button @click="updateproduct(index)">Update</button>
+                    <button @click="confirmUpdate(index)">Update</button>
                 </td>
                 <td>
-                    <button @click="deleteproduct(index)">Delete</button>
+                    <button @click="confirmDelete(item.product_id)">Delete</button>
                 </td>
                 </tr>
             </tbody>
