@@ -1,6 +1,10 @@
 <script>
 import '@fortawesome/fontawesome-free/css/all.css'
+import MarksForm from '../components/MarksForm.vue'
 export default {
+    components:{
+        MarksForm
+    },
     props:{
         dataToUpdate:{
             type: Object,
@@ -28,7 +32,8 @@ export default {
             Gender:this.Gender,
             Hobbies:this.Hobbies,
             PhoneNumber:this.PhoneNumber,
-            Marks:this.Marks
+            Marks:this.Marks,
+            Result:this.Result
         }
         this.$emit('show',this.student)
         this.resetForm()
@@ -40,7 +45,8 @@ export default {
       this.Gender = "";
       this.Hobbies = [];
       this.PhoneNumber = "";
-      this.Marks = "";
+      this.Marks = "",
+      this.Result=''
     }
     },
     watch :{
@@ -59,6 +65,14 @@ export default {
             },
             immediate: true         
         }
+    },
+    mounted(){
+        this.emitter.on('total',marks=>{
+            this.Marks=marks
+        })
+        this.emitter.on('result',result=>{
+            this.Result=result
+        })
     }
     }
 </script>
@@ -105,9 +119,9 @@ export default {
 
                 <label for="phone">Phone Number:</label>
                 <input type="tel" id="phone" name="phone" pattern="[0-9]{10}"  v-model="PhoneNumber" required><br>
-
-                <label for="marks">Marks:</label>
-                <input type="number" id="marks" name="marks" placeholder="0-100" min="0" max="100" v-model="Marks" required><br>
+                <MarksForm></MarksForm>
+                <!-- <label for="marks">Marks:</label>
+                <input type="number" id="marks" name="marks" placeholder="0-100" min="0" max="100" v-model="Marks" required><br> -->
 
                 <input type="submit" value="Submit">
             </form>

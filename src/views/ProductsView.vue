@@ -42,21 +42,31 @@ export default{
             if(this.products.length>0){
               this.products.forEach((prod)=>{
                 if(product.productId==prod.product_id){
-                  axios.put('http://127.0.0.1:3333/products/update',product)
-                  alert('Updated successfully')
-                  this.editIndex=null
+                  if(confirm(`This product already exist!!  Do you want to overwrite this product as ${product.productName}! `)){
+                    axios.put('http://127.0.0.1:3333/products/update',product)
+                    // .then(response=>{
+                    //   this.getProduct()
+                    // })
+                    
+                    alert('Updated successfully')
+                    this.editIndex=null
+                    this.getProduct()
+                  }
                 }
                 else{
                     push+=1
                     if(push==this.products.length){
                       axios.post('http://127.0.0.1:3333/products',product)
                       alert('Inserted successfully')
+                      this.getProduct()
                     }
                 }
               })  
             }
             else{
                 axios.post('http://127.0.0.1:3333/products',product)
+                alert('Inserted successfully')
+                this.getProduct()
             }
             },
         confirmUpdate(index){
@@ -65,14 +75,13 @@ export default{
           }
         },
         updateproduct(index){
-            this.editIndex=this.products[index]
-            console.log(this.editIndex,'button check')
-            get()
+            this.editProduct=this.products[index]
+            this.getProduct()
         },
         deleteproduct(productId){
           axios.delete(`http://127.0.0.1:3333/products/${productId}`)
           alert('Deleted successfully')
-          get()
+          this.getProduct()
         },
         confirmDelete(productId){
           if(confirm('Do you want to delete this product?')){
@@ -84,7 +93,7 @@ export default{
 </script>
 
 <template>
-    <ProductForm @show="addproduct" :dataToUpdate="editIndex"></ProductForm><br>
+    <ProductForm @show="addproduct" :dataToUpdate="editProduct"></ProductForm><br>
     <div class="table">
         <table>
             <thead>
@@ -103,7 +112,7 @@ export default{
                 <td>{{ item.product_name }}</td>
                 <td>{{ item.product_price }}</td>
                 <td>
-                    <button @click="confirmUpdate(index)">Update</button>
+                    <button @click="updateproduct(index)">Update</button>
                 </td>
                 <td>
                     <button @click="confirmDelete(item.product_id)">Delete</button>
