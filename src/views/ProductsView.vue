@@ -9,7 +9,8 @@ export default{
         return{
             products:[],
             editIndex:null,
-            searchQuery:''
+            searchQuery:'',
+            baseUrl:import.meta.env.VITE_BASE_URL
         }
     },
     mounted(){
@@ -27,13 +28,13 @@ export default{
     // },
     methods:{
       async getProduct(){
-        await axios.get('http://127.0.0.1:3333/products')
+        await axios.get(`${this.baseUrl}products`)
             .then((response)=>{
                     this.products=response.data
                 })
       },
       async search(){
-        await axios.get(`http://127.0.0.1:3333/products/search?searchQuery=${this.searchQuery}`)
+        await axios.get(`${this.baseUrl}products/search?searchQuery=${this.searchQuery}`)
         .then((response)=>{
           this.products=response.data
         })
@@ -50,7 +51,7 @@ export default{
               this.products.forEach((prod)=>{
                 if(product.productId==prod.product_id){
                   if(confirm(`This product already exist!!  Do you want to overwrite this product as ${product.productName}! `)){
-                    axios.put('http://127.0.0.1:3333/products/update',product)
+                    axios.put(`${this.baseUrl}products/update`,product)
                     // .then(response=>{
                     //   this.getProduct()
                     // })
@@ -63,7 +64,7 @@ export default{
                 else{
                     push+=1
                     if(push==this.products.length){
-                      axios.post('http://127.0.0.1:3333/products',product)
+                      axios.post(`${this.baseUrl}products`,product)
                       alert('Inserted successfully')
                       this.getProduct()
                     }
@@ -71,7 +72,7 @@ export default{
               })  
             }
             else{
-                axios.post('http://127.0.0.1:3333/products',product)
+                axios.post(`${this.baseUrl}products`,product)
                 alert('Inserted successfully')
                 this.getProduct()
             }
@@ -86,7 +87,7 @@ export default{
             this.getProduct()
         },
         deleteproduct(productId){
-          axios.delete(`http://127.0.0.1:3333/products/${productId}`)
+          axios.delete(`${this.baseUrl}products/${productId}`)
           alert('Deleted successfully')
           this.getProduct()
         },
