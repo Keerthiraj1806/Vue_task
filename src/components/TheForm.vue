@@ -20,7 +20,9 @@ export default {
         Hobbies:[],
         PhoneNumber:"",
         Marks:"",
-        student: {}
+        Result:"",
+        student: {},
+        searchQuery:''
     }
   },
   methods:{
@@ -84,7 +86,7 @@ export default {
             <h1>Student Details</h1>
             <form @submit.prevent="show">
                 <label for="name">Name:</label>
-                <input type="text" id="name" name="name" pattern="[A-Za-z]+" v-model="Name" required><br>
+                <input type="text" id="name" name="name" pattern="[A-Za-z\s]+" v-model="Name" required><br>
 
                 <label for="rollno">Roll Number:</label>
                 <input type="text" id="rollno" name="rollno"  pattern="[A-Za-z0-9]+" v-model="RollNumber"><br>

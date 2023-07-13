@@ -84,7 +84,7 @@ export default{
           <th>Phone Number</th>
           <th>Marks</th>
           <th>Result</th>
-          <th>Grade</th>
+          <!-- <th>Grade</th> -->
           <th>Edit</th>
           <th>Delete</th>
         </tr>
@@ -97,7 +97,7 @@ export default{
           <td>{{ person.PhoneNumber }}</td>
           <td>{{ person.Marks }}</td>
           <td>{{ person.Result }}</td>
-          <td>{{$filters.toGrade(person.Marks)}}</td>
+          <!-- <td>{{$filters.toGrade(person.Marks)}}</td> -->
           <td>
           <button class="edit-button" v-on:click="updateStudent(index)">Edit</button>
           </td>

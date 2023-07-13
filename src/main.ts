@@ -28,7 +28,17 @@ app.config.globalProperties.$filters={
           }
           else
             return 'RA'
-          }
+          },
+    // finalResult(total){
+    //   if(total>250 && total<500){
+    //     return 'pass'
+    //   }
+    //   else if(total>500){
+    //     return 'Invalid mark'
+    //   }
+    //   else{
+    //     return 'fail'
+    //   }
+    // }
     }
-
 app.mount('#app')

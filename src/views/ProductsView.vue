@@ -8,7 +8,8 @@ export default{
     data(){
         return{
             products:[],
-            editIndex:null
+            editIndex:null,
+            searchQuery:''
         }
     },
     mounted(){
@@ -30,6 +31,12 @@ export default{
             .then((response)=>{
                     this.products=response.data
                 })
+      },
+      async search(){
+        await axios.get(`http://127.0.0.1:3333/products/search?searchQuery=${this.searchQuery}`)
+        .then((response)=>{
+          this.products=response.data
+        })
       },
         addproduct(value){
             console.log(value)
@@ -94,6 +101,10 @@ export default{
 
 <template>
     <ProductForm @show="addproduct" :dataToUpdate="editProduct"></ProductForm><br>
+    <div class="search">
+                <label for="search">Search:</label>
+                <input type="text" id="search" v-model="searchQuery" @input="search">
+    </div><br><br>
     <div class="table">
         <table>
             <thead>
@@ -133,13 +144,13 @@ export default{
     padding: 8px;
     text-align: left;
     border-bottom: 1px solid #ddd;
+    margin-left: 50px;
   }
 
   th {
     background-color: #f5f5f5;
     font-weight: bold;
   }
-
 
   td button {
     padding: 6px 12px;
@@ -160,5 +171,25 @@ export default{
     background-color: #f44336;
     color: #fff;
   }
-    
+  
+  /* Style for the search input */
+  .search {
+    margin-bottom: 20px;
+  }
+
+  .search label {
+    font-weight: bold;
+    margin-right: 5px;
+  }
+
+  .search input[type="text"] {
+    padding: 6px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+
+  .table {
+    overflow-x: auto;
+  }
 </style>
